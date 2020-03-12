@@ -22,4 +22,4 @@ test('it works!', () => {
     })
     getByText(/test/i)
     getByText(/no/i)
-}) 
+})  
