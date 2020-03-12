@@ -43,7 +43,7 @@ const ContactForm = () => {
           <label htmlFor="email"  >
             Email*
           </label>
-          <input name="email" id='email' placeholder="bluebill1049@hotmail.com" ref={register({ required: true, })} />
+          <input name="email" id='email' placeholder="bluebill1049@hotmail.com" ref={register({ required: true, pattern: /^\S+@\S+$/i })} />
           {errors.email && (
             <p>Looks like there was an error: {errors.email.type}</p>
           )}
@@ -57,9 +57,13 @@ const ContactForm = () => {
             {JSON.stringify(data, null, 2)}
           </pre>
         )}
+        <h2>{data.firstName}</h2>
+        <h2>{data.lastName}</h2>
+        <h2>{data.email}</h2>
         <input type="submit" data-testid='submit' />
+        {console.log(data)}
+
       </form>
-      {console.log(data)}
     </div>
   );
 };

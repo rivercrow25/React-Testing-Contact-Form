@@ -20,5 +20,5 @@ test('it works!', () => {
     findByTestId('submit').then(response => {
         fireEvent.click(response)
     })
-    getByText(/nick/)
+
 }) 
