@@ -12,13 +12,14 @@ test('it works!', () => {
     const message = getByLabelText(/message/i)
 
 
-    fireEvent.change(FnameInput[0], { target: { name: 'firstname', value: 'nick' } })
-    fireEvent.change(LnameInput, { target: { name: 'lastname', value: 'migel' } })
+    fireEvent.change(FnameInput[0], { target: { name: 'firstname', value: 'no' } })
+    fireEvent.change(LnameInput, { target: { name: 'lastname', value: 'no' } })
     fireEvent.change(email, { target: { name: 'email', value: 'test' } })
     fireEvent.change(message, { target: { name: 'message', value: '' } })
 
     findByTestId('submit').then(response => {
         fireEvent.click(response)
     })
-
+    getByText(/test/i)
+    getByText(/no/i)
 }) 
