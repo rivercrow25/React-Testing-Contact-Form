@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const ContactForm = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const { register, errors, handleSubmit, reset } = useForm({
     mode: "onBlur"
   });
   const onSubmit = data => {
     setData(data);
+    console.log(data)
   };
+
 
   return (
     <div className="App">
@@ -18,7 +20,7 @@ const ContactForm = () => {
           <input
             name="firstName"
             placeholder="bill"
-            ref={register({ required: true, maxLength: 3 })}
+            ref={register({ required: true, minLength: 3 })}
           />
           {errors.firstName && (
             <p>Looks like there was an error: {errors.firstName.type}</p>
@@ -30,7 +32,7 @@ const ContactForm = () => {
           <input
             name="lastName"
             placeholder="luo"
-            ref={register({ required: true })}
+            ref={register({ required: true, minLength: 3 })}
           />
           {errors.lastName && (
             <p>Looks like there was an error: {errors.lastName.type}</p>
@@ -38,25 +40,26 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
+          <label htmlFor="email"  >
             Email*
           </label>
-          <input name="email" ref={register({ required: true })} />
+          <input name="email" id='email' placeholder="bluebill1049@hotmail.com" ref={register({ required: true, })} />
           {errors.email && (
             <p>Looks like there was an error: {errors.email.type}</p>
           )}
         </div>
         <div>
           <label htmlFor="message">Message</label>
-          <textarea name="message" ref={register({ required: false })} />
+          <textarea name="message" id='message' ref={register({ required: false })} />
         </div>
         {data && (
           <pre style={{ textAlign: "left", color: "white" }}>
             {JSON.stringify(data, null, 2)}
           </pre>
         )}
-        <input type="submit" />
+        <input type="submit" data-testid='submit' />
       </form>
+      {console.log(data)}
     </div>
   );
 };
