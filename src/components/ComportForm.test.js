@@ -1,25 +1,28 @@
 import React from "react";
 import { render, fireEvent, getByText, wait, getByTestId } from "@testing-library/react";
 import ContactForm from "./ContactForm";
-import { act } from 'react-dom/test-utils'
 
 
-test('it works!', () => {
-    const { getAllByPlaceholderText, getByPlaceholderText, getByLabelText, findByTestId, getByText } = render(<ContactForm />)
+test('it works!', async () => {
+    const { getAllByPlaceholderText, getByPlaceholderText, getByLabelText, findByTestId, getByText, findByText } = render(<ContactForm />)
     const FnameInput = getAllByPlaceholderText(/bill/i)
     const LnameInput = getByPlaceholderText(/luo/i)
     const email = getByLabelText(/email/i)
     const message = getByLabelText(/message/i)
 
 
-    fireEvent.change(FnameInput[0], { target: { name: 'firstname', value: 'no' } })
-    fireEvent.change(LnameInput, { target: { name: 'lastname', value: 'no' } })
-    fireEvent.change(email, { target: { name: 'email', value: 'test' } })
-    fireEvent.change(message, { target: { name: 'message', value: '' } })
+    fireEvent.change(FnameInput[0], { target: { name: 'firstName', value: 'Nick' } })
+    fireEvent.change(LnameInput, { target: { name: 'lastName', value: 'Migel' } })
+    fireEvent.change(email, { target: { name: 'email', value: 'nickmigel@gmail.com' } })
+    fireEvent.change(message, { target: { name: 'message', value: 'none' } })
 
     findByTestId('submit').then(response => {
         fireEvent.click(response)
+
+
     })
-    getByText(/test/i)
-    getByText(/no/i)
+    await findByText(/Nick/)
+    await getByText(/Migel/)
+    await getByText(/nickmigel@gmail.com/i)
+
 })  

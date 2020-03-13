@@ -20,6 +20,7 @@ const ContactForm = () => {
           <input
             name="firstName"
             placeholder="bill"
+            id='firstName'
             ref={register({ required: true, minLength: 3 })}
           />
           {errors.firstName && (
@@ -57,7 +58,6 @@ const ContactForm = () => {
         <h2>{data.email}</h2>
         <input type="submit" data-testid='submit' />
         {console.log(data)}
-
       </form>
     </div>
   );
